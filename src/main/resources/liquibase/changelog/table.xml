@@ -1,0 +1,117 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <property  name="schema.name"  value="gtsdevschema"/>
+    <changeSet  id="SCHEMA-1"  author="gouthami"  runInTransaction="false">
+        <sqlFile path="liquibase/changelog/schema.sql" />
+    </changeSet>
+    <changeSet id="TABLE-1" author="gouthami">
+        <createTable tableName="clients" schemaName="${schema.name}">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR"/>
+            <column name="created_date" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="TABLE-2" author="gouthami" >
+        <createTable tableName="accounts" schemaName="${schema.name}">
+            <column name="account_id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="client_id" type="INT"/>
+            <column name="current_balance" type="NUMERIC"/>
+            <column name="currency" type="VARCHAR"/>
+            <column name="account_status" type="VARCHAR"/>
+            <column name="created_date" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="TABLE-3" author="gouthami">
+        <createTable tableName="transactions" schemaName="${schema.name}">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="account_id" type="BIGINT"/>
+            <column name="to_account_id" type="BIGINT"/>
+            <column name="type_of_transaction" type="VARCHAR"/>
+            <column name="amount" type="NUMERIC"/>
+            <column name="currency" type="VARCHAR"/>
+            <column name="transaction_status" type="VARCHAR"/>
+            <column name="remarks" type="VARCHAR"/>
+            <column name="created_date" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="Constraint-1" author="gouthami">
+        <addForeignKeyConstraint baseColumnNames="client_id"
+                                 baseTableSchemaName="${schema.name}"
+                                 baseTableName="accounts"
+                                 constraintName="fk_client_id"
+                                 referencedColumnNames="id"
+                                 referencedTableSchemaName="${schema.name}"
+                                 referencedTableName="clients"/>
+    </changeSet>
+    <changeSet id="Constraint-2" author="gouthami">
+    <addForeignKeyConstraint baseColumnNames="account_id"
+                             baseTableSchemaName="${schema.name}"
+                             baseTableName="transactions"
+                             constraintName="fk_account_id"
+                             referencedColumnNames="account_id"
+                             referencedTableSchemaName="${schema.name}"
+                             referencedTableName="accounts"/>
+    </changeSet>
+    <changeSet id="INSERT-1"  author="gouthami">
+    <insert tableName="clients" schemaName="${schema.name}">
+        <column name="name" value="Julia"/>
+    </insert>
+    <insert tableName="clients" schemaName="${schema.name}">
+        <column name="name" value="Hamlet"/>
+    </insert>
+    <insert tableName="clients" schemaName="${schema.name}">
+        <column name="name"  value="Siva"/>
+    </insert>
+    <insert tableName="accounts" schemaName="${schema.name}">
+        <column name="account_id" value="456786549"/>
+        <column name="client_id" value="2"/>
+        <column name="current_balance" value="10000"/>
+        <column name="currency" value="EUR"/>
+        <column name="account_status" value="ACTIVE"/>
+    </insert>
+    <insert tableName="accounts" schemaName="${schema.name}">
+        <column name="account_id" value="456786111"/>
+        <column name="client_id" value="2"/>
+        <column name="current_balance" value="10000"/>
+        <column name="currency" value="INR"/>
+        <column name="account_status" value="ACTIVE"/>
+    </insert>
+    <insert tableName="accounts" schemaName="${schema.name}">
+        <column name="account_id" value="456786222"/>
+        <column name="client_id" value="3"/>
+        <column name="current_balance" value="10000"/>
+        <column name="currency" value="USD"/>
+        <column name="account_status" value="ACTIVE"/>
+    </insert>
+    <insert tableName="transactions" schemaName="${schema.name}">
+        <column name="account_id" value="456786549"/>
+        <column name="type_of_transaction" value="CREDIT"/>
+        <column name="amount" value="10000"/>
+        <column name="currency" value="EUR"/>
+        <column name="transaction_status" value="SUCCESS"/>
+    </insert>
+    <insert tableName="transactions" schemaName="${schema.name}">
+        <column name="account_id" value="456786111"/>
+        <column name="type_of_transaction" value="CREDIT"/>
+        <column name="amount" value="10000"/>
+        <column name="currency" value="INR"/>
+        <column name="transaction_status" value="SUCCESS"/>
+    </insert>
+    <insert tableName="transactions" schemaName="${schema.name}">
+        <column name="account_id" value="456786222"/>
+        <column name="type_of_transaction" value="CREDIT"/>
+        <column name="amount" value="10000"/>
+        <column name="currency" value="USD"/>
+        <column name="transaction_status" value="SUCCESS"/>
+    </insert>
+    </changeSet>
+</databaseChangeLog>

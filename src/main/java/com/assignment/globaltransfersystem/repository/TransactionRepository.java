@@ -6,6 +6,13 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * TransactionRepository for database queries
+ *
+ * @author Gouthami Matavalam
+ *
+ */
+
 @Repository
 public interface TransactionRepository extends JpaRepository<Transactions, Long> {
 

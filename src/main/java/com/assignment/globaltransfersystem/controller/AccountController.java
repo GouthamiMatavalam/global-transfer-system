@@ -7,7 +7,14 @@ import com.assignment.globaltransfersystem.service.AccountService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+
+/**
+ * AccountController class will be used for api requests mapping and
+ * send response
+ *
+ * @author Gouthami Matavalam
+ *
+ */
 
 @RestController
 @RequestMapping("/api/v1")

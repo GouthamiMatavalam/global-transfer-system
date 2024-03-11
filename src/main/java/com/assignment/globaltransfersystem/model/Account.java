@@ -3,6 +3,14 @@ package com.assignment.globaltransfersystem.model;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+
+/**
+ * Account class to map the records in database table ACCOUNTS
+ *
+ * @author Gouthami Matavalam
+ *
+ */
 
 @Entity
 @Table(name = "ACCOUNTS")
@@ -17,7 +25,7 @@ public class Account implements Serializable {
     private Client client;
 
     @Column(name = "current_balance")
-    private Long currentBalance;
+    private BigDecimal currentBalance;
 
     @Column(name = "currency")
     private String currency;
@@ -33,11 +41,11 @@ public class Account implements Serializable {
         this.id = id;
     }
 
-    public Long getCurrentBalance() {
+    public BigDecimal getCurrentBalance() {
         return currentBalance;
     }
 
-    public void setCurrentBalance(Long currentBalance) {
+    public void setCurrentBalance(BigDecimal currentBalance) {
         this.currentBalance = currentBalance;
     }
 

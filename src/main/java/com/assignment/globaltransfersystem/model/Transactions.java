@@ -3,7 +3,15 @@ package com.assignment.globaltransfersystem.model;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
+
+/**
+ * Transactions class to map the records in database table TRANSACTIONS
+ *
+ * @author Gouthami Matavalam
+ *
+ */
 
 @Entity
 @Table(name = "TRANSACTIONS")
@@ -27,7 +35,7 @@ public class Transactions implements Serializable {
     private String transactionType;
 
     @Column(name = "amount")
-    private Long amount;
+    private BigDecimal amount;
 
     @Column(name = "currency")
     private String currency;
@@ -73,11 +81,11 @@ public class Transactions implements Serializable {
         this.transactionType = transactionType;
     }
 
-    public Long getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(Long amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 

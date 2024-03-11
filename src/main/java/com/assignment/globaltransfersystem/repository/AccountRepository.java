@@ -6,6 +6,13 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * AccountRepository for database queries
+ *
+ * @author Gouthami Matavalam
+ *
+ */
+
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long> {
 

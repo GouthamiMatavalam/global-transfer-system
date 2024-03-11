@@ -4,6 +4,13 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 
+/**
+ * Client class to map the records in database table CLIENTS
+ *
+ * @author Gouthami Matavalam
+ *
+ */
+
 @Entity
 @Table(name = "CLIENTS")
 public class Client implements Serializable {
