@@ -65,9 +65,11 @@ _Get Account transactions based on Account Id : Transactions are to be displayed
 _Transfer amount from one Account to another Account : Transfer amount and deduct amount transferred in source account._
 
 Amount Transferred and added to Destination Account
+
 ![image](https://github.com/GouthamiMatavalam/global-transfer-system/assets/38003356/f2746abb-4d26-452f-a951-b9e44cd19840)
 
 Amount deducted from source account
+
 ![image](https://github.com/GouthamiMatavalam/global-transfer-system/assets/38003356/51bf2521-31f7-426c-9ac0-0b3c5ca1a374)
 
 
