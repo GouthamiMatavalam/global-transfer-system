@@ -16,17 +16,6 @@ Below are the prerequisites required to run the application.
 3. Postman
 4. Docker for DB setup
 
-**Database Design :**
-Designed Database with three tables as part of requirement. 
-![image](https://github.com/GouthamiMatavalam/global-transfer-system/assets/38003356/3b7f4903-3874-4589-b014-97729eb1df75)
-
-**Database Setup :**
-I have used Docker to setup Postgres below are the commands used to do the setup. Believed docker is already available.
-1. pull latest docker image - docker pull postgres 
-2. to execute - docker run --name postgresdb -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=password -e POSTGRES_DB=GTSDB -d postgres
-3. With above steps, you should be able to connect with any tool or can use psql. If you are getting exception "FATAL: password authentication failed for user "postgres" ". Please follow next step.
-4. Edit " /usr/local/var/postgres/pg_hba.conf " file. From "local all all trust" to "local all all scram-sha-256". This should resolve the issue.
-
 **Assumptions Considered while creating the Application:**
 
 **Database** 
@@ -44,6 +33,38 @@ I have used Docker to setup Postgres below are the commands used to do the setup
     - Transfer amount currency should match the destination account currency.
     - A new record is created in Transactions Table, to hold successful and failed transactions. Remarks field is used to keep track of reason for failure, for Success it will be "Successfu Transaction".
     - Once transaction is successful, transferred amount is deducted from source account.
+    - Currency conversion is done using - http://api.exchangerate.host/convert?access_key={accessKey}&from=USD&to=INR&amount=10
+    - Personal AccessKey is generated after logging in to - https://exchangerate.host/login, and used in application.
+
+**Database Design :**
+Designed Database with three tables as part of requirement. 
+![image](https://github.com/GouthamiMatavalam/global-transfer-system/assets/38003356/3b7f4903-3874-4589-b014-97729eb1df75)
+
+**Database Setup :**
+I have used Docker to setup Postgres below are the commands used to do the setup. Believed docker is already available.
+1. pull latest docker image - docker pull postgres 
+2. to execute - docker run --name postgresdb -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=password -e POSTGRES_DB=GTSDB -d postgres
+3. With above steps, you should be able to connect with any tool or can use psql. If you are getting exception "FATAL: password authentication failed for user "postgres" ". Please follow next step.
+4. Edit " /usr/local/var/postgres/pg_hba.conf " file. From "local all all trust" to "local all all scram-sha-256". This should resolve the issue.
+
+**Application Setup :**
+1. Clone the code using git clone and repo link.
+2. Once the DB setup is done, If the DB connection properties are different from above. Please update them in application.properties file.
+3. Add accessKey in application.properties file field "exchange.rate.key".
+4. Application will run on localhost:8080 port. It will show actuator endpoints and also circuit breaker endpoints in "http://localhost:8080/actuator/"
+5. The above changes are sufficient to run the application.
+
+**Testing :**
+
+Get Accounts based on client Id : One client Id can have multiple accounts, with different currency.
+![image](https://github.com/GouthamiMatavalam/global-transfer-system/assets/38003356/8b5fa8b2-c550-4be5-ac96-3f761ea26651)
+
+Get Account transactions based on Account Id : Transactions are to be displayed in descending order
+
+Transfer amount from one Account to another Account :
+
+
+
 
 
 
