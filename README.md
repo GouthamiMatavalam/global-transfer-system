@@ -68,7 +68,8 @@ Amount Transferred and added to Destination Account
 ![image](https://github.com/GouthamiMatavalam/global-transfer-system/assets/38003356/f2746abb-4d26-452f-a951-b9e44cd19840)
 
 Amount deducted from source account
-![image](https://github.com/GouthamiMatavalam/global-transfer-system/assets/38003356/69c74f99-b354-4a64-a04c-d45e9d80b257)
+![image](https://github.com/GouthamiMatavalam/global-transfer-system/assets/38003356/51bf2521-31f7-426c-9ac0-0b3c5ca1a374)
+
 
 
 
