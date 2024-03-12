@@ -19,12 +19,14 @@ public class ApplicationUtils {
         return BigDecimal.valueOf(Double.valueOf(str));
     }
 
+    // Deducts amount from source account
     public static BigDecimal balanceAmount(Account fromAccountData, BigDecimal amountTobeDeductedFromSource)
     {
         return fromAccountData.getCurrentBalance().subtract(amountTobeDeductedFromSource);
     }
 
-    public static boolean checkForNegativeBalance(Account fromAccountData, BigDecimal amountTobeDeductedFromSource){
+    // validates if the transfer amount is greater than account balance
+    public static boolean checkForPositiveBalance(Account fromAccountData, BigDecimal amountTobeDeductedFromSource){
         if(balanceAmount(fromAccountData, amountTobeDeductedFromSource).compareTo(BigDecimal.ZERO) > 0)
             return true;
         else

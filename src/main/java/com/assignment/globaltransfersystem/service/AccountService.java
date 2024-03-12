@@ -74,7 +74,7 @@ public class AccountService {
         if(toAccountData.getCurrency().equals(currencyFields[1]))
         {
             BigDecimal amountTobeDeductedFromSource = currencyConversion(toAccountData.getCurrency(), fromAccountData.getCurrency(), Long.parseLong(currencyFields[0]));
-            if(ApplicationUtils.checkForNegativeBalance(fromAccountData, amountTobeDeductedFromSource)){
+            if(ApplicationUtils.checkForPositiveBalance(fromAccountData, amountTobeDeductedFromSource)){
 
                 // Add amount to destination account
                 toAccountData.setCurrentBalance(toAccountData.getCurrentBalance().add(ApplicationUtils.strToBigDec(currencyFields[0])));
