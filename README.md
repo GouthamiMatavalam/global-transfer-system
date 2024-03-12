@@ -56,12 +56,22 @@ I have used Docker to setup Postgres below are the commands used to do the setup
 
 **Testing :**
 
-Get Accounts based on client Id : One client Id can have multiple accounts, with different currency.
+_Get Accounts based on client Id : One client Id can have multiple accounts, with different currency._
 ![image](https://github.com/GouthamiMatavalam/global-transfer-system/assets/38003356/8b5fa8b2-c550-4be5-ac96-3f761ea26651)
 
-Get Account transactions based on Account Id : Transactions are to be displayed in descending order
+_Get Account transactions based on Account Id : Transactions are to be displayed in descending order_
+![image](https://github.com/GouthamiMatavalam/global-transfer-system/assets/38003356/9dfe5871-29c1-4454-8921-1df3c90aa9a9)
 
-Transfer amount from one Account to another Account :
+_Transfer amount from one Account to another Account : Transfer amount and deduct amount transferred in source account._
+
+Amount Transferred and added to Destination Account
+![image](https://github.com/GouthamiMatavalam/global-transfer-system/assets/38003356/f2746abb-4d26-452f-a951-b9e44cd19840)
+
+Amount deducted from source account
+![image](https://github.com/GouthamiMatavalam/global-transfer-system/assets/38003356/69c74f99-b354-4a64-a04c-d45e9d80b257)
+
+
+
 
 
 
