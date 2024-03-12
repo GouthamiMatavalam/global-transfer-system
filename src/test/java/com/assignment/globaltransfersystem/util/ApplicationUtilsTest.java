@@ -21,7 +21,6 @@ public class ApplicationUtilsTest {
 
     @Before
     public void setUp(){
-        accountData = new Account();
         bigDecimalData = "100.213";
         inputString = " ";
     }
@@ -39,7 +38,7 @@ public class ApplicationUtilsTest {
     @Test
     public void testBalanceAmount()
     {
-        accountData.setCurrentBalance(new BigDecimal(1000.10));
+        accountData = Account.builder().currentBalance(new BigDecimal(1000.10)).build();
         BigDecimal balanceAmount = ApplicationUtils.balanceAmount(accountData, new BigDecimal(bigDecimalData));
         assertNotNull(balanceAmount);
     }
@@ -47,14 +46,14 @@ public class ApplicationUtilsTest {
     @Test
     public void testCheckForPositiveBalance()
     {
-        accountData.setCurrentBalance(new BigDecimal(1000.10));
+        accountData = Account.builder().currentBalance(new BigDecimal(1000.10)).build();
         assertTrue(ApplicationUtils.checkForPositiveBalance(accountData, new BigDecimal(bigDecimalData)));
     }
 
     @Test
     public void testCheckForNegativeBalance()
     {
-        accountData.setCurrentBalance(new BigDecimal(10.10));
+        accountData = Account.builder().currentBalance(new BigDecimal(10.10)).build();
         assertFalse(ApplicationUtils.checkForPositiveBalance(accountData, new BigDecimal(bigDecimalData)));
     }
 }

@@ -1,6 +1,7 @@
 package com.assignment.globaltransfersystem.model;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,6 +16,11 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "TRANSACTIONS")
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Transactions implements Serializable {
 
     @Id
@@ -23,6 +29,8 @@ public class Transactions implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "account_id", insertable = false, updatable = false)
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
     private Account account;
 
     @Column(name = "account_id")
@@ -48,76 +56,4 @@ public class Transactions implements Serializable {
 
     @Column(name = "remarks")
     private String remarks;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Long getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
-    }
-
-    public Long getToAccountId() {
-        return toAccountId;
-    }
-
-    public void setToAccountId(Long toAccountId) {
-        this.toAccountId = toAccountId;
-    }
-
-    public String getTransactionType() {
-        return transactionType;
-    }
-
-    public void setTransactionType(String transactionType) {
-        this.transactionType = transactionType;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public String getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
-
-    public String getTransactionStatus() {
-        return transactionStatus;
-    }
-
-    public void setTransactionStatus(String transactionStatus) {
-        this.transactionStatus = transactionStatus;
-    }
-
-    public Timestamp getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Timestamp createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public String getRemarks() {
-        return remarks;
-    }
-
-    public void setRemarks(String remarks) {
-        this.remarks = remarks;
-    }
 }

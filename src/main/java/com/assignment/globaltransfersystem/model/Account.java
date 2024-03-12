@@ -1,6 +1,7 @@
 package com.assignment.globaltransfersystem.model;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -14,6 +15,11 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "ACCOUNTS")
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Account implements Serializable {
 
     @Id
@@ -22,6 +28,8 @@ public class Account implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "client_id")
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
     private Client client;
 
     @Column(name = "current_balance")
@@ -32,36 +40,4 @@ public class Account implements Serializable {
 
     @Column(name = "account_status")
     private String accountStatus;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public BigDecimal getCurrentBalance() {
-        return currentBalance;
-    }
-
-    public void setCurrentBalance(BigDecimal currentBalance) {
-        this.currentBalance = currentBalance;
-    }
-
-    public String getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
-
-    public String getAccountStatus() {
-        return accountStatus;
-    }
-
-    public void setAccountStatus(String accountStatus) {
-        this.accountStatus = accountStatus;
-    }
 }
