@@ -99,7 +99,7 @@ public class AccountService {
         return toAccountData;
     }
 
-    private void mapAndSaveTransactionRecord(Long fromAccountId, Long toAccountId, String[] currencyFields, String status, String remarks)
+    public void mapAndSaveTransactionRecord(Long fromAccountId, Long toAccountId, String[] currencyFields, String status, String remarks)
     {
         Transactions transactions = new Transactions();
         ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of(ApplicationConstants.TIMEZONE)) ;
@@ -115,7 +115,7 @@ public class AccountService {
         transactionRepository.save(transactions);
     }
 
-    private BigDecimal currencyConversion(String fromCurrency, String toCurrency, Long amount) throws Exception {
+    public BigDecimal currencyConversion(String fromCurrency, String toCurrency, Long amount) throws Exception {
 
         Map<String, String> queryParams = new HashMap<>();
         queryParams.put(ApplicationConstants.ACCESS_KEY, key);
@@ -134,7 +134,7 @@ public class AccountService {
     }
 
     @CircuitBreaker(name = "getExchangeRate", fallbackMethod = "getExchangeRateFallback")
-    private JsonNode getExchangeRate(Map<String, String> queryParams)
+    public JsonNode getExchangeRate(Map<String, String> queryParams)
     {
         return restTemplate.getForObject(url, JsonNode.class, queryParams);
     }
