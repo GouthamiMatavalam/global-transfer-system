@@ -18,13 +18,13 @@ Below are the prerequisites required to run the application.
 
 **Assumptions Considered while creating the Application:**
 
-**Database : ** 
+**Database :** 
 - Before deploying the application, assuming that the DB setup is done and a "GTSDB" is available.
 - Defined schema creation in liquibase scripts, default schema name is "gtsdevschema". Can be changed in application.properties file - "db-schema" property.
 - Initial DB setup is done with sample data using Liquibase.
 - Amount field is considered as NUMERIC to support decimal precision.
   
-**Application : **
+**Application :**
 - Account transactions are retreived based on, transaction date descending order.
 - Account Trasfer :
     - Input consists of "fromAccountId", "toAccountId" and "Amount".
