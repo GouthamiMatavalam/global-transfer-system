@@ -24,8 +24,7 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -88,7 +87,7 @@ public class AccountControllerTest {
 
     @Test
     public void getAccountTransactionsTest() throws Exception{
-        when(accountService.getAccountTransactions(anyLong())).thenReturn(transactionsList);
+        when(accountService.getAccountTransactions(anyLong(), anyInt(), anyInt())).thenReturn(transactionsList);
         mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/transactions/2"))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk());

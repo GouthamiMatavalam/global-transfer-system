@@ -81,8 +81,8 @@ public class AccountServiceTest {
 
     @Test
     public void testGetAccountTransactions(){
-        when(transactionRepository.findByAccountIdOrderByCreatedDateDesc(anyLong())).thenReturn(transactionsList);
-        List<Transactions> actualTransactions = accountService.getAccountTransactions(accountList.get(0).getId());
+        when(transactionRepository.getAccountTransactions(anyLong(), anyInt(), anyInt())).thenReturn(transactionsList);
+        List<Transactions> actualTransactions = accountService.getAccountTransactions(accountList.get(0).getId(), 1, 1);
         assertEquals(transactionsList, actualTransactions);
     }
 

@@ -59,8 +59,8 @@ public class AccountService {
         return accountRepository.findByClientId(id);
     }
 
-    public List<Transactions> getAccountTransactions(Long id){
-        return transactionRepository.findByAccountIdOrderByCreatedDateDesc(id);
+    public List<Transactions> getAccountTransactions(Long id, int offset, int limit){
+        return transactionRepository.getAccountTransactions(id, offset, limit);
     }
 
     @Transactional

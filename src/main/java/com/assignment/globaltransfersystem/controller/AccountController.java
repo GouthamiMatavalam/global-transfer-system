@@ -37,8 +37,10 @@ public class AccountController {
 
     @RequestMapping(value = { "/transactions/{accountId}" }, method = { RequestMethod.GET }, produces = {
             MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<List<Transactions>> getAccountTransactions(@PathVariable(name="accountId") Long id) {
-        return new ResponseEntity<>(accountService.getAccountTransactions(id), HttpStatus.OK);
+    public ResponseEntity<List<Transactions>> getAccountTransactions(@PathVariable(name="accountId") Long id,
+            @RequestParam(defaultValue = "0") int offset,
+            @RequestParam(defaultValue = "10") int limit) {
+        return new ResponseEntity<>(accountService.getAccountTransactions(id, offset, limit), HttpStatus.OK);
     }
 
     @RequestMapping(value = { "/transfer" }, method = { RequestMethod.POST }, produces = {
