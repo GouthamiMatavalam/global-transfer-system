@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
@@ -81,7 +82,7 @@ public class AccountServiceTest {
 
     @Test
     public void testGetAccountTransactions(){
-        when(transactionRepository.getAccountTransactions(anyLong(), anyInt(), anyInt())).thenReturn(transactionsList);
+        when(transactionRepository.findByAccountId(anyLong(), any(Pageable.class))).thenReturn(transactionsList);
         List<Transactions> actualTransactions = accountService.getAccountTransactions(accountList.get(0).getId(), 1, 1);
         assertEquals(transactionsList, actualTransactions);
     }
