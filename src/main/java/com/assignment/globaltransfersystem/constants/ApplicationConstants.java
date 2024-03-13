@@ -36,6 +36,7 @@ public class ApplicationConstants {
 
     // Generic fields
     public static final String SPACE = " ";
+    public static final String CREATED_DATE = "createdDate";
 
     // Query Params for API Call
     public static final String ACCESS_KEY = "accessKey";

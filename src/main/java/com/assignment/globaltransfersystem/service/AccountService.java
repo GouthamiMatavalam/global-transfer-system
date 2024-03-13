@@ -65,7 +65,7 @@ public class AccountService {
 
     // Fetch List of transactions for an account, with support to Paging
     public List<Transactions> getAccountTransactions(Long id, int offset, int limit){
-        Pageable pageable = PageRequest.of(offset, limit, Sort.by("createdDate").descending());
+        Pageable pageable = PageRequest.of(offset, limit, Sort.by(ApplicationConstants.CREATED_DATE).descending());
         return transactionRepository.findByAccountId(id, pageable);
     }
 
