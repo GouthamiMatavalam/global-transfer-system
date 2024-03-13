@@ -13,6 +13,9 @@ import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -55,14 +58,18 @@ public class AccountService {
         this.restTemplate = restTemplate;
     }
 
+    // To fetch List of accounts for a client Id
     public List<Account> getClientAccounts(Long id){
         return accountRepository.findByClientId(id);
     }
 
+    // Fetch List of transactions for an account, with support to Paging
     public List<Transactions> getAccountTransactions(Long id, int offset, int limit){
-        return transactionRepository.getAccountTransactions(id, offset, limit);
+        Pageable pageable = PageRequest.of(offset, limit, Sort.by("createdDate").descending());
+        return transactionRepository.findByAccountId(id, pageable);
     }
 
+    // Method to perform validations and process transfer request
     @Transactional
     public Account transferAmount(TransferRequest transferRequest) throws Exception {
         String[] currencyFields = transferRequest.amount().split(ApplicationConstants.SPACE);
@@ -99,6 +106,7 @@ public class AccountService {
         return toAccountData;
     }
 
+    // Mapping transaction record to save the data
     public void mapAndSaveTransactionRecord(Long fromAccountId, Long toAccountId, String[] currencyFields, String status, String remarks)
     {
         Transactions transactions = new Transactions();
@@ -115,6 +123,7 @@ public class AccountService {
         transactionRepository.save(transactions);
     }
 
+    // Currency Conversion and Error handling
     public BigDecimal currencyConversion(String fromCurrency, String toCurrency, Long amount) throws Exception {
 
         Map<String, String> queryParams = new HashMap<>();
@@ -133,12 +142,14 @@ public class AccountService {
         }
     }
 
+    // Resilence Implementation using Circuit Breaker
     @CircuitBreaker(name = "getExchangeRate", fallbackMethod = "getExchangeRateFallback")
     public JsonNode getExchangeRate(Map<String, String> queryParams)
     {
         return restTemplate.getForObject(url, JsonNode.class, queryParams);
     }
 
+    // Fallback implementation
     private String getExchangeRateFallback(Exception e)
     {
         logger.info("Fallback method response");

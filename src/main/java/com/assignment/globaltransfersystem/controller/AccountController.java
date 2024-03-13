@@ -29,12 +29,14 @@ public class AccountController {
         this.accountService = accountService;
     }
 
+    // API to fetch list of Accounts for a Client id
     @RequestMapping(value = { "/accounts/{clientId}" }, method = { RequestMethod.GET }, produces = {
             MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<List<Account>> getClientAccounts(@PathVariable(name="clientId") Long id) {
         return new ResponseEntity<> (accountService.getClientAccounts(id), HttpStatus.OK);
     }
 
+    // API to fetch list of Transactions for a Account id
     @RequestMapping(value = { "/transactions/{accountId}" }, method = { RequestMethod.GET }, produces = {
             MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<List<Transactions>> getAccountTransactions(@PathVariable(name="accountId") Long id,
@@ -43,6 +45,7 @@ public class AccountController {
         return new ResponseEntity<>(accountService.getAccountTransactions(id, offset, limit), HttpStatus.OK);
     }
 
+    // API to do amount transfer from one account to another account
     @RequestMapping(value = { "/transfer" }, method = { RequestMethod.POST }, produces = {
             MediaType.APPLICATION_JSON_VALUE }, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
